@@ -2,7 +2,7 @@ let AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
     s3.copyObject({
-        'Bucket': "dynamo-lambda-redshift-data",
+        'Bucket': "apig-kine-proxy",
         'CopySource': "/randomized_blogspot_com_images/mec_logo.gif",
         'Key': "mec_logo.gif"
     }).promise()
@@ -20,4 +20,5 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             console.log(err, err.stack); // an error occurred
         });
+
 }
