@@ -2,7 +2,7 @@ let AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
     s3.putObject({
-        "Body": `${event}`,
+        "Body": "{}",
         "Bucket": "s3-lambda-s3-data",
         "Key": "event.json"
     })
@@ -19,5 +19,4 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             console.log(err, err.stack); // an error occurred
         });
-
 }
