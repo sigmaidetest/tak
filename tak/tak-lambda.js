@@ -2,8 +2,8 @@ let AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
     s3.listObjects({
-        'Bucket': 'apig-kine-proxy',
-        'MaxKeys': 100,
+        'Bucket': 's3-lambda-s3-data',
+        'MaxKeys': 10,
         'Prefix': ''
     }).promise()
         .then(data => {
