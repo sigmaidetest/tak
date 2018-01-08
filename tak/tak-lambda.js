@@ -2,7 +2,7 @@ let AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
     s3.putObject({
-        "Body": event,
+        "Body": JSON.stringify(event),
         "Bucket": "dynamo-lambda-redshift-data",
         "Key": "event.json"
     })
