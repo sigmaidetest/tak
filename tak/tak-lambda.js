@@ -28,23 +28,5 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             console.log(err, err.stack); // an error occurred
         });
-    s3.copyObject({
-        'Bucket': "panittuwak",
-        'CopySource': "/dynamo-lambda-redshift-data/balla",
-        'Key': "balla"
-    }).promise()
-        .then(data => {
-            console.log(data);           // successful response
-            /*
-            data = {
-                CopyObjectResult: {
-                    ETag: "\"6805f2cfc46c0f04559748bb039d69ae\"",
-                    LastModified: <Date Representation>
-                }
-            }
-            */
-        })
-        .catch(err => {
-            console.log(err, err.stack); // an error occurred
-        });
+
 }
