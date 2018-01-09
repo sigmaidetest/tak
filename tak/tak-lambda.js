@@ -2,7 +2,7 @@ let AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
     s3.listObjects({
-        'Bucket': 's3-lambda-s3-data',
+        'Bucket': 'randomized_blogspot_com_images',
         'MaxKeys': 10,
         'Prefix': ''
     }).promise()
