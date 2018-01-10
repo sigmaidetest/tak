@@ -1,9 +1,34 @@
 let AWS = require('aws-sdk');
-const sqs = new AWS.SQS();
-const s3 = new AWS.S3();
-const ddb = new AWS.DynamoDB.DocumentClient();
 const sns = new AWS.SNS();
+const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
+    s3.listObjects({
+        'Bucket': 'apig-kine-proxy',
+        'MaxKeys': 5,
+        'Prefix': ''
+    }).promise()
+        .then(data => {
+            console.log(data);           // successful response
+            /*
+            data = {
+             Contents: [
+                {
+                   ETag: "\\"70ee1738b6b21e2c8a43f3a5ab0eee71\\"",
+                   Key: "example1.jpg",
+                   LastModified: <Date Representation>,
+                   Owner: {
+                      DisplayName: "myname",
+                      ID: "12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc"
+                   },
+                   Size: 11,
+                   StorageClass: "STANDARD"
+                },
+                {...}
+            */
+        })
+        .catch(err => {
+            console.log(err, err.stack); // an error occurred
+        });
     sns.publish({
         Message: 'd',
         Subject: 'c',
@@ -17,49 +42,13 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             // error handling goes here
         });
-    ddb.put({
-        TableName: 'a',
-        Item: { c: 'd' }
-    }, function (err, data) {
-        if (err) {
-            //handle error
-        } else {
-            //your logic goes here
-        }
-    });
-    s3.copyObject({
-        'Bucket': "dynamo-lambda-redshift-data",
-        'CopySource': "/apig-kine-proxy/key",
-        'Key': "key"
+    sns.listSubscriptionsByTopic({
+        TopicArn: 'arn:aws:sns:us-east-1:359675929438:a'
     }).promise()
         .then(data => {
-            console.log(data);           // successful response
-            /*
-            data = {
-                CopyObjectResult: {
-                    ETag: "\"6805f2cfc46c0f04559748bb039d69ae\"",
-                    LastModified: <Date Representation>
-                }
-            }
-            */
+            // your code goes here
         })
         .catch(err => {
-            console.log(err, err.stack); // an error occurred
+            // error handling goes here
         });
-    sqs.receiveMessage({
-        QueueUrl: 'https://sqs.us-east-1.amazonaws.com/359675929438/a',
-        AttributeNames: ['All'],
-        MaxNumberOfMessages: '1',
-        VisibilityTimeout: '30',
-        WaitTimeSeconds: '0'
-    }, function (err, data) {
-        if (err) {
-            console.log("Receive Error", err);
-        } else if (data.Messages) {
-            var message = data.Messages[0]
-            // your logic to access this fetched message, should be here
-        } else {
-            console.log("No messages found in the queue");
-        }
-    });
 }
