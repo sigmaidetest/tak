@@ -14,5 +14,4 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             // error handling goes here
         });
-
 }
