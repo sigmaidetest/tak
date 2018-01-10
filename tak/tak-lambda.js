@@ -6,7 +6,7 @@ exports.handler = function (event, context, callback) {
         Subject: 'c',
         MessageAttributes: {},
         MessageStructure: 'String',
-        TopicArn: 'arn:aws:sns:us-east-1:359675929438:tak'
+        TopicArn: 'arn:aws:sns:us-east-1:359675929438:a'
     }).promise()
         .then(data => {
             // your code goes here
@@ -14,4 +14,5 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             // error handling goes here
         });
+
 }
