@@ -6,7 +6,7 @@ exports.handler = function (event, context, callback) {
         Subject: 'c',
         MessageAttributes: {},
         MessageStructure: 'String',
-        TopicArn: 'arn:aws:sns:us-east-1:359675929438:a'
+        TopicArn: 'arn:aws:sns:us-east-1:359675929438:tak'
     }).promise()
         .then(data => {
             // your code goes here
