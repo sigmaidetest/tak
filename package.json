@@ -1,5 +1,7 @@
 {
-  "name": "AmazonS3Test100117",
-  "version": "1",
-  "dependencies": {}
+  "name": "tak",
+  "version": "tuk",
+  "dependencies": {
+    "aws-sdk": "2.176.0"
+  }
 }
