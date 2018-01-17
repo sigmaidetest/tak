@@ -1,8 +1,8 @@
 {
   "name": "tak",
-  "version": "tuk",
+  "version": "1.0.0",
   "dependencies": {
     "aws-sdk": "2.176.0",
-    "@slappforge/slappforge-sdk": "0.0.1"
+    "@slappforge/slappforge-sdk": "0.0.2"
   }
 }
