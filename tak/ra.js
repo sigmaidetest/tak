@@ -1,8 +1,9 @@
 let AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
+
 	s3.listObjects({
-		'Bucket': 'dynamo-lambda-redshift-data',
+		'Bucket': 'apig-kine-proxy',
 		'MaxKeys': 10,
 		'Prefix': ''
 	}).promise()
@@ -28,15 +29,15 @@ exports.handler = function (event, context, callback) {
 		.catch(err => {
 			console.log(err, err.stack); // an error occurred
 		});
-
-	s3.deleteObject({
-		'Bucket': "apig-kine-proxy",
-		'Key': "deploy.yaml"
+	s3.getBucketLocation({
+		'Bucket': "dynamo-lambda-redshift-data"
 	}).promise()
 		.then(data => {
 			console.log(data);           // successful response
 			/*
-				data = {}
+			data = {
+				LocationConstraint: "us-west-2"
+			}
 			*/
 		})
 		.catch(err => {
