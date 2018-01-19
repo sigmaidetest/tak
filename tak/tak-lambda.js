@@ -1,6 +1,7 @@
 let AWS = require('aws-sdk');
 const s3 = new AWS.S3();
 exports.handler = function (event, context, callback) {
+
 	s3.listObjects({
 		'Bucket': 'dynamo-lambda-redshift-data',
 		'MaxKeys': 10,
@@ -23,20 +24,6 @@ exports.handler = function (event, context, callback) {
 				   StorageClass: "STANDARD"
 				},
 				{...}
-			*/
-		})
-		.catch(err => {
-			console.log(err, err.stack); // an error occurred
-		});
-
-	s3.deleteObject({
-		'Bucket': "apig-kine-proxy",
-		'Key': "deploy.yaml"
-	}).promise()
-		.then(data => {
-			console.log(data);           // successful response
-			/*
-				data = {}
 			*/
 		})
 		.catch(err => {
