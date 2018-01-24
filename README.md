@@ -1,2 +1,3 @@
 # tak
-tik
+
+A three-lambda test. DO NOT DELETE.
