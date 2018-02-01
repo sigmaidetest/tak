@@ -9,7 +9,7 @@ exports.handler = function (event, context, callback) {
 			'AWS.SNS.SMS.SMSType': {
 				DataType: 'String',
 				StringValue: 'Promotional'
-			},
+			}
 		},
 		PhoneNumber: '+94773117990'
 	}).promise()
